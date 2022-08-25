@@ -5,9 +5,9 @@
 Related to [rCore](http://rcore-os.cn/), learn OS with Rust and RISC-V.
 
 ## Plan 
-* [] Finished all experiments in rCore
+* [ ] Finished all experiments in rCore
     * [x] ch1
-    * [] ex-ch1
+    * [ ] ex-ch1
 
 (To be continue...)
 
