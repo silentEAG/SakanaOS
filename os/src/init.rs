@@ -1,18 +1,19 @@
-use log::{debug, SetLoggerError, LevelFilter, info};
+use log::{debug, info, LevelFilter, SetLoggerError};
 
 use crate::io::console::SakanaLogger;
 
 pub fn init_logger() -> Result<(), SetLoggerError> {
     static LOGGER: SakanaLogger = SakanaLogger;
-    log::set_logger(&LOGGER).map(|()| log::set_max_level(
-        match option_env!("OS_LOG") {
+    log::set_logger(&LOGGER).map(|()| {
+        log::set_max_level(match option_env!("OS_LOG") {
             Some("ERROR") => LevelFilter::Error,
             Some("WARN") => LevelFilter::Warn,
             Some("INFO") => LevelFilter::Info,
             Some("DEBUG") => LevelFilter::Debug,
             Some("TRACE") => LevelFilter::Trace,
             _ => LevelFilter::Info,
-        }))
+        })
+    })
 }
 
 fn space_info() {
@@ -42,7 +43,10 @@ fn build_info() {
     let kernel_name = env!("KERNEL_NAME");
     let kernel_version = env!("KERNEL_VERSION");
     let build_time = env!("BUILD_TIME");
-    info!("{} v{} built at {}", kernel_name, kernel_version, build_time);
+    info!(
+        "{} v{} built at {}",
+        kernel_name, kernel_version, build_time
+    );
 }
 
 fn clear_bss() {
@@ -50,7 +54,7 @@ fn clear_bss() {
         fn sbss();
         fn ebss();
     }
-    (sbss as usize..ebss as usize).for_each(|p| unsafe {(p as *mut u8).write_volatile(0) });
+    (sbss as usize..ebss as usize).for_each(|p| unsafe { (p as *mut u8).write_volatile(0) });
 }
 
 pub fn sys_init() {

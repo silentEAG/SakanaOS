@@ -2,9 +2,9 @@
 #![no_main]
 #![feature(panic_info_message)]
 
+mod init;
 mod lang_items;
 mod sbi;
-mod init;
 #[macro_use]
 mod io;
 
