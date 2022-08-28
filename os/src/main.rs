@@ -7,6 +7,7 @@ mod lang_items;
 mod sbi;
 #[macro_use]
 mod io;
+mod syscall;
 
 use core::arch::global_asm;
 use log::info;
