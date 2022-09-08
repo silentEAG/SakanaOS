@@ -11,15 +11,14 @@ impl Write for Stdout {
     }
 }
 
-/// raw stdout impl
-pub fn print(args: core::fmt::Arguments) {
+pub(crate) fn print(args: core::fmt::Arguments) {
     Stdout.write_fmt(args).unwrap();
 }
 
 #[macro_export]
 macro_rules! print {
     ($($args:tt)+) => {
-        $crate::io::console::print(format_args!($($args:tt)+));
+        $crate::io::console::print(format_args!($($args)+));
     }
 }
 
@@ -32,10 +31,6 @@ macro_rules! println {
         $crate::io::console::print(format_args!(concat!($fmt, "\n") $(, $($arg)+)?));
     }
 }
-
-// pub fn colour_stdout(colour_code: usize, s: &str) -> &str {
-//     concat!("\u{1b}[", colour_code, "m", s, "\u{1b}[0m")
-// }
 
 /// Console log settings
 pub struct SakanaLogger;
@@ -57,7 +52,7 @@ impl log::Log for SakanaLogger {
                 Level::Trace => 90_usize,
             };
             println!(
-                "\u{1b}[{}m[{}] {}\u{1b}[0m",
+                "[\u{1b}[{}mKERNEL|{}\u{1b}[0m] {}",
                 colour_code,
                 record.level(),
                 record.args()

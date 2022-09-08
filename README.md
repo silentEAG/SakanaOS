@@ -8,6 +8,8 @@ Related to [rCore](http://rcore-os.cn/), learn OS with Rust and RISC-V.
 * [ ] Finished all experiments in rCore
     * [x] ch1
     * [ ] ex-ch1
+    * [ ] ch2
+* [ ] ?
 
 (To be continue...)
 

@@ -37,7 +37,7 @@ build: env
 	@rust-objcopy --strip-all $(KERNEL_ELF) \
 	-O binary $(KERNEL_BIN)
 
-run: run-inner
+run: build-usr run-inner
 
 run-inner: build
 	@qemu-system-riscv64 \
@@ -53,6 +53,9 @@ debug: build
 		-bios $(BOOTLOADER) \
 		-device loader,file=$(KERNEL_BIN),addr=$(KERNEL_ENTRY_PA) \
 		-s -S
+
+build-usr:
+	cd ../usr; make run; cd ../os
 
 gdb:
 	riscv64-unknown-elf-gdb \

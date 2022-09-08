@@ -7,20 +7,27 @@ mod lang_items;
 mod sbi;
 #[macro_use]
 mod io;
+mod batch;
+mod sync;
 mod syscall;
+mod trap;
 
 use core::arch::global_asm;
 use log::info;
 
-use crate::sbi::shutdown;
+// use crate::sbi::shutdown;
 
-global_asm!(include_str!("asm/boot.asm"));
+global_asm!(include_str!("asm/boot.S"));
+global_asm!(include_str!("asm/link_app.S"));
+global_asm!(include_str!("asm/trap.S"));
 #[no_mangle]
 pub fn sakana_main() {
     // System init
     init::sys_init();
-
     let message = "Hello, world!";
     info!("{}", message);
-    shutdown();
+    trap::init();
+    batch::init();
+    batch::run_next_app();
+    // shutdown();
 }

@@ -6,6 +6,8 @@ edition = "2021"
 
 [dependencies]
 log = "0.4"
+lazy_static = { version = "1.4.0", features = ["spin_no_std"] }
+riscv = "0.8.0"
 
 [build-dependencies]
 chrono = "0.4.22"

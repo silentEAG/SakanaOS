@@ -6,6 +6,8 @@ extern crate usr_lib;
 
 #[no_mangle]
 fn main() -> i32 {
-    println!("Hello, world! from U mod!");
+    let a = 1000_u32;
+    let b = 2000_u32;
+    println!("a * b = {}", a * b);
     0
 }

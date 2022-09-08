@@ -19,3 +19,6 @@ binary: elf
 	@$(foreach elf, $(ELFS), $(OBJCOPY) $(elf) --strip-all -O binary $(patsubst $(TARGET_DIR)/%, $(TARGET_DIR)/%.bin, $(elf));)
 
 build: binary
+
+run: build
+	@$(foreach elf, $(ELFS), qemu-riscv64 $(elf);)
