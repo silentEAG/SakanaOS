@@ -11,9 +11,12 @@ mod batch;
 mod sync;
 mod syscall;
 mod trap;
+mod trace;
 
 use core::arch::global_asm;
 use log::info;
+
+// use crate::batch::APP_MANAGER;
 
 // use crate::sbi::shutdown;
 

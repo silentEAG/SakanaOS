@@ -1,7 +1,7 @@
 use core::panic::PanicInfo;
 use log::error;
 
-use crate::sbi::shutdown;
+use crate::{sbi::shutdown, trace::stack_trace};
 
 #[panic_handler]
 fn panic(panic_info: &PanicInfo) -> ! {
@@ -20,5 +20,6 @@ fn panic(panic_info: &PanicInfo) -> ! {
     } else {
         error!("Paniced occurred: {}", message);
     }
+    unsafe { stack_trace(); }
     shutdown()
 }

@@ -10,6 +10,8 @@
     .globl __restore
     .align 2
 __alltraps:
+    # sscratch -> kernel stack
+    # sp -> user stack
     csrrw sp, sscratch, sp
     # now sp->kernel stack, sscratch->user stack
     # allocate a TrapContext on kernel stack
@@ -25,6 +27,7 @@ __alltraps:
         SAVE_GP %n
         .set n, n+1
     .endr
+    # save other context info
     # we can use t0/t1/t2 freely, because they were saved on kernel stack
     csrr t0, sstatus
     csrr t1, sepc

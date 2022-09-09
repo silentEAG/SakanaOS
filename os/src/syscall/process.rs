@@ -1,3 +1,4 @@
+// use crate::sbi::shutdown;
 use crate::batch::run_next_app;
 use log::info;
 
