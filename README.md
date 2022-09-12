@@ -7,8 +7,8 @@ Related to [rCore](http://rcore-os.cn/), learn OS with Rust and RISC-V.
 ## Plan 
 * [ ] Finished all experiments in rCore
     * [x] ch1
-    * [ ] ex-ch1
-    * [ ] ch2
+    * [x] ch2
+    * [ ] ch3
 * [ ] ?
 
 (To be continue...)
@@ -28,27 +28,46 @@ Wanting to get more setup infomation just view [rCore-setup-env](http://rcore-os
 
 Use `cd os && make run` to start.
 ```text
-[rustsbi] RustSBI version 0.2.2, adapting to RISC-V SBI v1.0.0
-...(rustsbi logo)
-[rustsbi] Implementation     : RustSBI-QEMU Version 0.1.1
-[rustsbi] Platform Name      : riscv-virtio,qemu
-[rustsbi] Platform SMP       : 1
-[rustsbi] Platform Memory    : 0x80000000..0x88000000
-[rustsbi] Boot HART          : 0
-[rustsbi] Device Tree Region : 0x87000000..0x87000ef2
-[rustsbi] Firmware Address   : 0x80000000
-[rustsbi] Supervisor Address : 0x80200000
-[rustsbi] pmp01: 0x00000000..0x80000000 (-wr)
-[rustsbi] pmp02: 0x80000000..0x80200000 (---)
-[rustsbi] pmp03: 0x80200000..0x88000000 (xwr)
-[DEBUG] .text [0x80200000, 0x80203000)
-[DEBUG] .rodata [0x80203000, 0x80205000)
-[DEBUG] .data [0x80205000, 0x80206000)
-[DEBUG] boot_stack [0x80206000, 0x80216000)
-[DEBUG] .bss [0x80216000, 0x80217000)
-[INFO] sakana-os v0.1.0 built at Thu, 25 Aug 2022 16:36:37 +0800
-[INFO] Hello, world!
-[INFO] Shutdown...
+[KERNEL|DEBUG] .text [0x80200000, 0x80204000)
+[KERNEL|DEBUG] .rodata [0x80204000, 0x8020c000)
+[KERNEL|DEBUG] .data [0x8020c000, 0x80214000)
+[KERNEL|DEBUG] boot_stack [0x80214000, 0x80224000)
+[KERNEL|DEBUG] .bss [0x80224000, 0x80225000)
+[KERNEL|INFO] sakana-os v0.1.0 built at Mon, 12 Sep 2022 15:22:15 +0800
+[KERNEL|INFO] Hello, world!
+[KERNEL|TRACE] num_app = 4
+[KERNEL|TRACE] app_0 [0x8020c030, 0x8020d8d8)
+[KERNEL|TRACE] app_1 [0x8020d8d8, 0x8020f1d0)
+[KERNEL|TRACE] app_2 [0x8020f1d0, 0x80210dd8)
+[KERNEL|TRACE] app_3 [0x80210dd8, 0x80212dc0)
+[KERNEL|TRACE] Loading app_0
+[KERNEL|INFO] PageFault in application, kernel killed it.
+[KERNEL|TRACE] Loading app_1
+Hello, SilentE!
+[KERNEL|INFO] Application exited with code 0
+[KERNEL|TRACE] Loading app_2
+time: 49
+[KERNEL|INFO] Application exited with code 0
+[KERNEL|TRACE] Loading app_3
+[KERNEL|ERROR] Unsupported fd in sys_write!
+string from data section
+strinstring from stack section
+strin
+Test write1 OK!
+[KERNEL|INFO] Application exited with code 0
+[KERNEL|ERROR] Panicked at src/batch/mod.rs:70:13, All applications completed!
+==Stack Tracing Begin==
+Return Address: 0x0000000080200bbc, fp: 0x0000000080206c50
+Return Address: 0x0000000080201ca2, fp: 0x0000000080206ce0
+Return Address: 0x00000000802007a2, fp: 0x0000000080206e10
+Return Address: 0x00000000802016c6, fp: 0x0000000080206e70
+Return Address: 0x0000000080200dec, fp: 0x0000000080206ef0
+Return Address: 0x00000000802008cc, fp: 0x0000000080208fd0
+Return Address: 0x00000000804002f4, fp: 0x0000000080208fe0
+Return Address: 0x0000000080400094, fp: 0x0000000080209000
+Return Address: 0x0000000000000000, fp: 0x0000000000000000
+==Stack Tracing End==
+[KERNEL|INFO] Shutdown...
 ```
 
 ## Reference

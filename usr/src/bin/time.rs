@@ -9,6 +9,6 @@ extern crate usr_lib;
 #[no_mangle]
 fn main() -> i32 {
     let time = get_time();
-    println!("{:?}", time);
+    println!("time: {:?}", time);
     0
 }

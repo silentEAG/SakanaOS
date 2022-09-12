@@ -55,7 +55,7 @@ debug: build
 		-s -S
 
 build-usr:
-	cd ../usr; make run; cd ../os
+	cd ../usr; make build; cd ../os
 
 gdb:
 	riscv64-unknown-elf-gdb \

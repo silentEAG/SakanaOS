@@ -23,8 +23,9 @@ pub fn sys_write(fd: usize, buffer: &[u8]) -> isize {
     syscall(SYSCALL_WRITE, [fd, buffer.as_ptr() as usize, buffer.len()])
 }
 
-pub fn sys_exit(xstate: i32) -> isize {
-    syscall(SYSCALL_EXIT, [xstate as usize, 0, 0])
+pub fn sys_exit(xstate: i32) -> ! {
+    syscall(SYSCALL_EXIT, [xstate as usize, 0, 0]);
+    panic!("sys_exit never returns");
 }
 
 pub fn sys_get_time(time: &TimeVal, tz: usize) -> isize {

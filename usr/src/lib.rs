@@ -21,6 +21,7 @@ impl TimeVal {
     }
 }
 
+
 use buddy_system_allocator::LockedHeap;
 const USER_HEAP_SIZE: usize = 16384;
 
@@ -43,7 +44,6 @@ pub extern "C" fn _start() -> ! {
             .init(HEAP_SPACE.as_ptr() as usize, USER_HEAP_SIZE);
     }
     exit(main());
-    panic!("unreachable after sys_exit!");
 }
 
 #[linkage = "weak"]
@@ -67,8 +67,8 @@ use syscall::*;
 pub fn write(fd: usize, buf: &[u8]) -> isize {
     sys_write(fd, buf)
 }
-pub fn exit(exit_code: i32) -> isize {
-    sys_exit(exit_code)
+pub fn exit(exit_code: i32) -> ! {
+    sys_exit(exit_code);
 }
 
 pub fn get_time() -> isize {
