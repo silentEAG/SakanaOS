@@ -1,7 +1,6 @@
 #![allow(unused)]
 
 use core::arch::asm;
-
 use log::info;
 
 use crate::println;
@@ -29,6 +28,10 @@ fn sbi_call(which: usize, arg0: usize, arg1: usize, arg2: usize) -> usize {
         );
     }
     ret
+}
+
+pub fn set_timer(timer: usize) {
+    sbi_call(SBI_SET_TIMER, timer, 0, 0);
 }
 
 pub fn putchar(c: usize) {

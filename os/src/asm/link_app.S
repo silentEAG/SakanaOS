@@ -12,12 +12,12 @@ _num_app:
     .global app_0_start
     .global app_0_end
 app_0_start:
-    .incbin "../usr/target/riscv64gc-unknown-none-elf/release/calc.bin"
+    .incbin "../usr/target/riscv64gc-unknown-none-elf/release/hello_world.bin"
 app_0_end:
 
     .section .data
     .global app_1_start
     .global app_1_end
 app_1_start:
-    .incbin "../usr/target/riscv64gc-unknown-none-elf/release/hello_world.bin"
+    .incbin "../usr/target/riscv64gc-unknown-none-elf/release/time.bin"
 app_1_end:

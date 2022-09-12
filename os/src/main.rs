@@ -8,10 +8,12 @@ mod sbi;
 #[macro_use]
 mod io;
 mod batch;
+mod consts;
 mod sync;
 mod syscall;
-mod trap;
+mod timer;
 mod trace;
+mod trap;
 
 use core::arch::global_asm;
 use log::info;

@@ -1,2 +1,3 @@
 os/target
+os/src/asm/link_app.S
 .vscode/*.log

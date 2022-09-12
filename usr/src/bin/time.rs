@@ -1,13 +1,14 @@
 #![no_std]
 #![no_main]
 
+use usr_lib::get_time;
+
 #[macro_use]
 extern crate usr_lib;
 
 #[no_mangle]
 fn main() -> i32 {
-    let a = 1000_u32;
-    let b = 2000_u32;
-    println!("a * b = {}", a * b);
+    let time = get_time();
+    println!("{:?}", time);
     0
 }

@@ -20,6 +20,8 @@ fn panic(panic_info: &PanicInfo) -> ! {
     } else {
         error!("Paniced occurred: {}", message);
     }
-    unsafe { stack_trace(); }
+    unsafe {
+        stack_trace();
+    }
     shutdown()
 }
